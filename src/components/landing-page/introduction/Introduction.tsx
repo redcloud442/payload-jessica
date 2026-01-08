@@ -40,6 +40,7 @@ const Introduction = async () => {
   return (
     <section className="relative w-full flex items-center justify-center min-h-[60vh] overflow-hidden">
       <div className="absolute inset-0 pointer-events-none bg-[url('/bg-intro.png')] bg-cover" />
+      <div className="absolute inset-0 bg-black/50 backdrop-brightness-75" />
       <div className="relative z-10 m-10 bg-black/40 backdrop-blur-xs border border-white/10 rounded-[10rem] p-3 md:p-5 shadow-2xl max-w-7xl mx-auto w-full">
         <h2
           className={`${allura.className} text-6xl md:text-8xl text-[#ffbd59] drop-shadow-lg`}

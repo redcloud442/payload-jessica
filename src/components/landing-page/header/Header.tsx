@@ -1,5 +1,6 @@
 import React from "react";
 import { Allura } from "next/font/google";
+import Image from "next/image";
 
 const allura = Allura({
   weight: "400",
@@ -10,35 +11,47 @@ const allura = Allura({
 const Header = () => {
   return (
     <section className="relative h-screen w-full overflow-hidden bg-[url('/bg-header.webp')] bg-cover bg-center">
-      <div className="absolute inset-0 bg-black/40 backdrop-brightness-75" />
+      <div className="absolute inset-0 bg-black/70 backdrop-brightness-75" />
 
-      <div className="relative z-10 flex h-full items-center justify-center px-6">
-        <div className="flex flex-col text-white w-full max-w-7xl gap-y-2">
-          <div className="flex items-center space-x-4 self-center md:self-start">
-            <span className="relative inline-block px-4 py-2">
-              <img
+      <div className="relative z-10 flex h-full items-center justify-center px-4 sm:px-10">
+        <div className="flex flex-col text-white w-full max-w-7xl items-center md:items-start">
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-4 mb-2">
+            <span className="relative inline-block px-6 py-2">
+              <Image
+                width={400}
+                height={400}
                 src="/circle.webp"
                 alt="circle accent"
-                className="absolute inset-0 w-full h-full object-contain scale-[2] z-0 -rotate-2"
+                className="absolute inset-0 w-full h-full object-contain scale-[1.8] sm:scale-[2.2] z-0 -rotate-2"
               />
-              <span className="relative z-10 text-3xl font-black tracking-widest md:text-5xl">
+              <span className="relative z-10 text-2xl sm:text-3xl md:text-5xl font-black tracking-widest uppercase">
                 WELCOME
               </span>
             </span>
 
-            <span className="text-3xl font-black tracking-widest md:text-5xl">
-              TO MY
+            <span className="text-2xl sm:text-3xl md:text-5xl font-black tracking-widest uppercase">
+              TO
+            </span>
+
+            <span className="hidden md:inline text-2xl sm:text-3xl md:text-5xl font-black tracking-widest uppercase">
+              MY
             </span>
           </div>
 
-          <h1 className="mt-4 text-6xl font-black leading-[0.8] tracking-tighter md:text-[12rem] text-left">
-            PORTFOLIO
+          <h1 className="text-[12vw] sm:text-[10vw] md:text-[12rem] font-black leading-[0.85] md:leading-[0.8] tracking-tighter text-center md:text-left uppercase">
+            <span className="md:hidden">MY </span>PORTFOLIO
           </h1>
 
           <p
-            className={`${allura.className} self-center text-7xl md:self-end md:text-[12rem] drop-shadow-2xl font-bold text-[#ffbd59] font-[900]`}
+            className={`${allura.className} 
+              relative z-20 
+       
+              text-6xl sm:text-8xl md:text-[155px] 
+              text-[#ffbd59] drop-shadow-2xl 
+              font-bold leading-none
+              md:self-end md:mr-10`}
           >
-            Jesica
+            Jessica
           </p>
         </div>
       </div>

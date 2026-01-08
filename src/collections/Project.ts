@@ -1,10 +1,9 @@
 import type { CollectionConfig } from "payload";
 
-export const Video: CollectionConfig = {
-  slug: "video",
+export const Project: CollectionConfig = {
+  slug: "projects",
   admin: {
     useAsTitle: "title",
-    defaultColumns: ["title", "createdAt"],
   },
   access: {
     read: () => true,
@@ -16,23 +15,17 @@ export const Video: CollectionConfig = {
       required: true,
     },
     {
-      name: "description",
-      type: "textarea",
+      name: "category",
+      type: "relationship",
+      relationTo: "project-categories",
       required: true,
     },
     {
-      name: "thumbnail",
+      name: "projectMedia",
       type: "upload",
       relationTo: "media",
       required: true,
-    },
-    {
-      name: "videoURL",
-      type: "text",
-      admin: {
-        description: "YouTube, Vimeo, or hosted video URL",
-      },
+      hasMany: true,
     },
   ],
-  timestamps: true,
 };

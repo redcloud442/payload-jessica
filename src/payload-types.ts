@@ -69,7 +69,8 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
-    video: Video;
+    projects: Project;
+    'project-categories': ProjectCategory;
     profile: Profile;
     experience: Experience;
     education: Education;
@@ -82,7 +83,8 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    video: VideoSelect<false> | VideoSelect<true>;
+    projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    'project-categories': ProjectCategoriesSelect<false> | ProjectCategoriesSelect<true>;
     profile: ProfileSelect<false> | ProfileSelect<true>;
     experience: ExperienceSelect<false> | ExperienceSelect<true>;
     education: EducationSelect<false> | EducationSelect<true>;
@@ -155,6 +157,7 @@ export interface User {
 export interface Media {
   id: number;
   alt: string;
+  thumbnail?: (number | null) | Media;
   prefix?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -170,17 +173,24 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "video".
+ * via the `definition` "projects".
  */
-export interface Video {
+export interface Project {
   id: number;
   title: string;
-  description: string;
-  thumbnail: number | Media;
-  /**
-   * YouTube, Vimeo, or hosted video URL
-   */
-  videoURL?: string | null;
+  category: number | ProjectCategory;
+  projectMedia: (number | Media)[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "project-categories".
+ */
+export interface ProjectCategory {
+  id: number;
+  title: string;
+  slug: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -277,8 +287,12 @@ export interface PayloadLockedDocument {
         value: number | Media;
       } | null)
     | ({
-        relationTo: 'video';
-        value: number | Video;
+        relationTo: 'projects';
+        value: number | Project;
+      } | null)
+    | ({
+        relationTo: 'project-categories';
+        value: number | ProjectCategory;
       } | null)
     | ({
         relationTo: 'profile';
@@ -362,6 +376,7 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  thumbnail?: T;
   prefix?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -377,13 +392,22 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "video_select".
+ * via the `definition` "projects_select".
  */
-export interface VideoSelect<T extends boolean = true> {
+export interface ProjectsSelect<T extends boolean = true> {
   title?: T;
-  description?: T;
-  thumbnail?: T;
-  videoURL?: T;
+  category?: T;
+  projectMedia?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "project-categories_select".
+ */
+export interface ProjectCategoriesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
   updatedAt?: T;
   createdAt?: T;
 }

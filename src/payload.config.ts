@@ -1,16 +1,17 @@
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import path from "path";
-import { buildConfig } from "payload";
+import { buildConfig, getPayload } from "payload";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
 import { s3Storage } from "@payloadcms/storage-s3";
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
-import { Video } from "./collections/Video";
+import { Project } from "./collections/Project";
 import { Profile } from "./collections/Profile";
 import { Experience } from "./collections/Experience";
 import { Education } from "./collections/Education";
+import { ProjectCategory } from "./collections/ProjectCategory";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -22,7 +23,15 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Video, Profile, Experience, Education],
+  collections: [
+    Users,
+    Media,
+    Project,
+    ProjectCategory,
+    Profile,
+    Experience,
+    Education,
+  ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
 
@@ -34,6 +43,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URL || "",
     },
   }),
+
   sharp,
   plugins: [
     s3Storage({

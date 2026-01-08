@@ -1,28 +1,102 @@
-import React, { ReactNode } from 'react'
-import '@/styles/global.css'
-import { Inter as FontSans } from 'next/font/google'
-import { cn } from '@/lib/utils'
+import React, { ReactNode } from "react";
+import "@/styles/global.css";
+import { Inter as FontSans } from "next/font/google";
+import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/sonner";
 
 type LayoutProps = {
-  children: ReactNode
-}
+  children: ReactNode;
+};
 
 export const metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
-}
+  title: {
+    default: "Jesica Lleona | Video Editor",
+    template: "%s | Jesica Lleona",
+  },
+  description:
+    "Jesica Lleona is a professional video editor specializing in cinematic edits, short-form content, and brand storytelling. Let's bring your vision to life.",
+
+  keywords: [
+    "Jesica Lleona",
+    "Video Editor",
+    "Cinematic Video Editing",
+    "Short Form Video Editor",
+    "Reels Editor",
+    "YouTube Video Editor",
+    "Brand Video Editing",
+    "Freelance Video Editor",
+  ],
+
+  authors: [{ name: "Jesica Lleona" }],
+  creator: "Jesica Lleona",
+  publisher: "Jesica Lleona",
+
+  metadataBase: new URL("https://jesicalleonablog.com"),
+
+  alternates: {
+    canonical: "/",
+  },
+
+  openGraph: {
+    title: "Jesica Lleona | Video Editor",
+    description:
+      "Professional video editor creating cinematic visuals, engaging short-form content, and impactful brand stories.",
+    url: "https://jesicalleonablog.com",
+    siteName: "Jesica Lleona",
+    images: [
+      {
+        url: "/og-image.jpg", // 🔥 Add this image to /public
+        width: 1200,
+        height: 630,
+        alt: "Jesica Lleona – Video Editor",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Jesica Lleona | Video Editor",
+    description:
+      "Cinematic video editor crafting engaging visuals for brands, creators, and storytellers.",
+    creator: "@jesica_lleona",
+    images: ["/og-image.jpg"],
+  },
+
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
 
 const fontSans = FontSans({
-  subsets: ['latin'],
-  variable: '--font-sans',
-})
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 export default async function RootLayout({ children }: LayoutProps) {
   return (
-    <html lang="en" className={cn('bg-background antialiased', fontSans.variable)}>
+    <html
+      lang="en"
+      className={cn("bg-background antialiased", fontSans.variable)}
+    >
       <body className="min-h-screen bg-background antialiased">
         <main>{children}</main>
+        <Toaster />
       </body>
     </html>
-  )
+  );
 }
