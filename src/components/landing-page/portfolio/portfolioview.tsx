@@ -10,6 +10,7 @@ import {
   DialogOverlay,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 type Preview =
   | { type: "image"; src: string; alt?: string }
@@ -20,9 +21,9 @@ export default function PortfolioView({ projectsByCategory }: any) {
 
   return (
     <>
-      <div className="bg-[#0a0a0a] min-h-screen text-white p-20">
+      <div className="bg-[#0a0a0a] min-h-screen text-white sm:p-10 p-5">
         <div className="max-w-7xl mx-auto space-y-32">
-          <h1 className="text-5xl md:text-7xl font-black text-center">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-black text-center">
             PROJECTS I&apos;VE WORKED ON
           </h1>
 
@@ -58,9 +59,11 @@ export default function PortfolioView({ projectsByCategory }: any) {
                       >
                         {isVideo ? (
                           <video
+                            ref={(el) => {
+                              (el as any)._videoEl = el;
+                            }}
                             src={media.url}
                             controls={false}
-                            autoPlay={false}
                             playsInline
                             preload="auto"
                             className="w-full max-h-[80vh] rounded-xl object-contain bg-black"
@@ -71,7 +74,7 @@ export default function PortfolioView({ projectsByCategory }: any) {
                             alt={media.alt}
                             width={1000}
                             height={1000}
-                            className="w-full aspect-video object-cover transition-transform duration-700 hover:scale-105"
+                            className="w-full object-cover transition-transform duration-700 hover:scale-105"
                           />
                         )}
 

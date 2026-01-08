@@ -39,64 +39,115 @@ const Introduction = async () => {
 
   return (
     <section className="relative w-full flex items-center justify-center min-h-[60vh] overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none bg-[url('/bg-intro.png')] bg-cover" />
+      <div className="absolute inset-0 pointer-events-none bg-[url('/bg-intro.png')] bg-cover bg-center" />
       <div className="absolute inset-0 bg-black/50 backdrop-brightness-75" />
-      <div className="relative z-10 m-10 bg-black/40 backdrop-blur-xs border border-white/10 rounded-[10rem] p-3 md:p-5 shadow-2xl max-w-7xl mx-auto w-full">
+
+      <div
+        className="
+      relative z-10
+      mx-4 my-10
+      bg-black/40 backdrop-blur-xs
+      border border-white/10
+      rounded-[3rem] lg:rounded-[10rem]
+      p-4 sm:p-6 md:p-8 lg:p-5
+      shadow-2xl
+      max-w-7xl w-full
+    "
+      >
+        {/* Title */}
         <h2
-          className={`${allura.className} text-6xl md:text-8xl text-[#ffbd59] drop-shadow-lg`}
+          className={`${allura.className}
+        text-4xl sm:text-5xl md:text-6xl lg:text-8xl
+        text-[#ffbd59] drop-shadow-lg
+      `}
         >
           About me
         </h2>
-        <div className="flex flex-row gap-12 p-4">
-          <div className="relative w-full md:w-[500px] shrink-0 flex items-start justify-start">
-            <div className="relative aspect-[3/4] rounded-[6rem] overflow-hidden border-2 border-[#ffbd59]">
-              <div className="w-full h-full rounded-[6rem] overflow-hidden">
-                <Image
-                  src={profilePicture.url ?? ""}
-                  width={1080}
-                  height={1080}
-                  alt="Jesica Profile"
-                />
-              </div>
+
+        {/* Content */}
+        <div
+          className="flex flex-col lg:flex-row
+        gap-8 lg:gap-12
+        p-4
+      "
+        >
+          {/* Profile Image */}
+          <div
+            className="
+          relative
+          w-full
+          max-w-xs sm:max-w-sm md:max-w-md
+          lg:w-[500px]
+          shrink-0
+          mx-auto lg:mx-0
+          flex justify-center lg:justify-start
+        "
+          >
+            <div
+              className="
+            relative aspect-[3/5] border-2
+            rounded-[3rem] lg:rounded-[6rem]
+            overflow-hidden
+            border-2 border-[#ffbd59]
+          "
+            >
+              <Image
+                src={profilePicture.url ?? ""}
+                width={1080}
+                height={1920}
+                alt="Jesica Profile"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
 
-          <div className="flex-1 flex flex-col justify-between max-w-3xl">
-            <p className="text-white/80 text-lg md:text-xl leading-relaxed font-light mb-12">
+          {/* Text Content */}
+          <div className="flex-1 flex flex-col gap-10 max-w-3xl mx-auto lg:mx-0">
+            {/* Bio */}
+            <p
+              className="
+            text-white/80
+            text-base sm:text-lg md:text-xl
+            leading-relaxed font-light
+          "
+            >
               {profileData?.bio}
             </p>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {/* Education + Experience */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Education */}
               <div>
-                <h3 className="text-3xl font-black text-white tracking-tight mb-4">
+                <h3 className="text-2xl sm:text-3xl font-black text-white mb-4">
                   EDUCATION
                 </h3>
                 {educationData.map((education) => (
-                  <div key={education.id}>
-                    <p className="text-[#ffbd59] text-xl font-bold">
+                  <div key={education.id} className="mb-4">
+                    <p className="text-[#ffbd59] text-lg sm:text-xl font-bold">
                       {education.startYear}-{education.endYear}
                     </p>
-                    <p className="text-lg font-semibold text-[#f2b457] font-normal">
+                    <p className="text-[#f2b457] text-base sm:text-lg">
                       {education.school}
                     </p>
-                    <p className="text-white text-start text-md font-semibold">
+                    <p className="text-white text-sm sm:text-md font-semibold">
                       {education.degree}
                     </p>
                   </div>
                 ))}
               </div>
 
+              {/* Experience */}
               <div>
-                <h3 className="text-3xl font-black text-white tracking-tight mb-4">
+                <h3 className="text-2xl sm:text-3xl font-black text-white mb-4">
                   EXPERIENCE
                 </h3>
-                <div className="grid grid-cols-2 items-center justify-center gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {experienceData.map((experience) => (
                     <div key={experience.id}>
-                      <p className="text-[#ffbd59] text-xl font-bold">
+                      <p className="text-[#ffbd59] text-lg font-bold">
                         {experience.startYear}-{experience.endYear}
                       </p>
-                      <p className="text-white text-md font-semibold ">
+                      <p className="text-white text-sm sm:text-md font-semibold">
                         {experience.company}
                       </p>
                     </div>
@@ -104,11 +155,13 @@ const Introduction = async () => {
                 </div>
               </div>
             </div>
+
+            {/* Skills */}
             <div>
-              <h3 className="text-3xl font-black text-white tracking-tight mb-4">
+              <h3 className="text-2xl sm:text-3xl font-black text-white mb-4">
                 TECHNICAL SKILLS
               </h3>
-              <div className="flex flex-wrap gap-4 max-w-xs">
+              <div className="flex flex-wrap max-w-xl gap-4">
                 {[
                   "Pr",
                   "Ps",
@@ -119,7 +172,7 @@ const Introduction = async () => {
                   "VsStudio",
                   "Sql",
                 ].map((skill) => (
-                  <div key={skill}>
+                  <div key={skill} className="w-10 h-10 sm:w-12 sm:h-12">
                     <Image
                       width={48}
                       height={48}
