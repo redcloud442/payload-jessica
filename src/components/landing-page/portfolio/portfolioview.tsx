@@ -23,17 +23,17 @@ export default function PortfolioView({ projectsByCategory }: any) {
     <>
       <div className="bg-[#0a0a0a] min-h-screen text-white sm:p-10 p-5">
         <div className="max-w-7xl mx-auto space-y-32">
-          <h1 className="text-3xl sm:text-5xl md:text-7xl font-black text-center">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-black text-center text-amber-500">
             PROJECTS I&apos;VE WORKED ON
           </h1>
 
           {Object.entries(projectsByCategory).map(([slug, category]: any) => (
             <section key={slug}>
               <div className="flex items-baseline gap-4 mb-10">
-                <h2 className="text-5xl md:text-7xl font-black">
+                <h2 className="text-5xl md:text-7xl font-black text-center">
                   {category.title}
                 </h2>
-                <div className="h-[2px] flex-1 bg-gradient-to-r from-amber-500/50 to-transparent" />
+                <div className="h-[2px] flex-1 bg-gradient-to-r from-amber-500/50 to-transparent mx-auto" />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

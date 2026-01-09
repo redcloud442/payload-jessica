@@ -43,15 +43,7 @@ const Introduction = async () => {
       <div className="absolute inset-0 bg-black/50 backdrop-brightness-75" />
 
       <div
-        className="
-      relative z-10
-      mx-4 my-10
-      bg-black/40 backdrop-blur-xs
-      border border-white/10
-      rounded-[3rem] lg:rounded-[10rem]
-      p-4 sm:p-6 md:p-8 lg:p-5
-      shadow-2xl
-      max-w-7xl w-full
+        className="relative z-10 mx-4 my-10 bg-black/40 backdrop-blur-xs border border-white/10 rounded-[3rem] lg:rounded-[10rem] p-4 sm:p-6 md:p-8 lg:p-5 shadow-2xl max-w-7xl w-full
     "
       >
         <h2
@@ -63,29 +55,10 @@ const Introduction = async () => {
           About me
         </h2>
 
-        <div
-          className="flex flex-col lg:flex-row
-        gap-8 lg:gap-12
-        p-4
-      "
-        >
-          <div
-            className="
-          relative
-          w-full
-          max-w-xs sm:max-w-sm md:max-w-md
-          lg:w-[500px]
-          shrink-0
-          mx-auto lg:mx-0
-          flex justify-center lg:justify-start
-        "
-          >
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 p-4">
+          <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:w-[500px] shrink-0 mx-auto lg:mx-0 flex justify-center lg:justify-start">
             <div
-              className="
-            relative aspect-[3/5] border-2
-            rounded-[3rem] lg:rounded-[6rem]
-            overflow-hidden
-            border-2 border-[#ffbd59]
+              className="relative aspect-[3/5] border-2 rounded-[3rem] lg:rounded-[6rem] overflow-hidden border-2 border-[#ffbd59]
           "
             >
               <Image
@@ -98,14 +71,8 @@ const Introduction = async () => {
             </div>
           </div>
 
-          <div className="flex-1 flex flex-col gap-10 max-w-3xl mx-auto lg:mx-0">
-            <p
-              className="
-            text-white/80
-            text-base sm:text-lg md:text-xl
-            leading-relaxed font-light
-          "
-            >
+          <div className="flex-1 flex flex-col gap-4 max-w-3xl mx-auto lg:mx-0">
+            <p className="text-white/80 text-base sm:text-lg md:text-xl leading-relaxed font-light">
               {profileData?.bio}
             </p>
 
@@ -129,7 +96,6 @@ const Introduction = async () => {
                 ))}
               </div>
 
-              {/* Experience */}
               <div>
                 <h3 className="text-2xl sm:text-3xl font-black text-white mb-4">
                   EXPERIENCE
@@ -154,7 +120,7 @@ const Introduction = async () => {
               <h3 className="text-2xl sm:text-3xl font-black text-white mb-4">
                 TECHNICAL SKILLS
               </h3>
-              <div className="flex flex-wrap max-w-lg gap-4 border-2">
+              <div className="flex flex-wrap gap-4 max-w-sm">
                 {[
                   "Pr",
                   "Ps",
@@ -165,10 +131,10 @@ const Introduction = async () => {
                   "VsStudio",
                   "Sql",
                 ].map((skill) => (
-                  <div key={skill} className="w-10 h-10 sm:w-12 sm:h-12">
+                  <div key={skill} className="w-20 h-20 sm:w-12 sm:h-12">
                     <Image
-                      width={48}
-                      height={48}
+                      width={100}
+                      height={100}
                       src={`/logo/${skill}.webp`}
                       alt={skill}
                       className="w-full h-full object-contain"
