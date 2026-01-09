@@ -1,6 +1,7 @@
 import { getPayload } from "payload";
 import config from "@/payload.config";
 import PortfolioView from "./portfolioview";
+import { Project, ProjectCategory } from "@/payload-types";
 
 export default async function Portfolio() {
   const payload = await getPayload({ config });
@@ -12,40 +13,34 @@ export default async function Portfolio() {
     sort: "createdAt",
   });
 
-  const ORDER = ["UGC", "VSL", "PODCAST", "STATIC"] as const;
+  const ORDER = ["ugc", "vsl", "podcast", "static"] as const;
 
-  // 1. Group projects by category slug
-  const grouped = projects.reduce(
-    (acc: Record<string, { title: string; projects: any[] }>, project: any) => {
-      const category = project.category;
+  const projectsByCategory = projects.reduce(
+    (
+      acc: Record<string, { title: string; projects: Project[] }> = {},
+      project: Project
+    ) => {
+      const category = project.category as ProjectCategory;
       if (!category) return acc;
-
-      const key = category.slug; // Ensure this matches "UGC", "VSL", etc.
-
-      if (!acc[key]) {
-        acc[key] = {
-          title: category.title,
-          projects: [],
-        };
-      }
-
-      acc[key].projects.push(project);
+      acc[category.slug] = {
+        title: category.title,
+        projects: [...(acc[category.slug]?.projects || []), project],
+      };
       return acc;
     },
-    {}
+    {} as Record<string, { title: string; projects: Project[] }>
   );
 
-  // 2. Reorder the categories based on the ORDER array
-  // We map through ORDER and only include categories that actually have projects
-  const orderedProjectsByCategory = ORDER.reduce(
-    (acc, slug) => {
-      if (grouped[slug]) {
-        acc[slug] = grouped[slug];
-      }
-      return acc;
-    },
-    {} as Record<string, { title: string; projects: any[] }>
-  );
+  const orderedProjectsByCategory = ORDER.map((slug) => {
+    const category = projectsByCategory[slug];
+    if (!category) return null;
+
+    return {
+      slug,
+      title: category.title,
+      projects: category.projects,
+    };
+  }).filter(Boolean);
 
   return <PortfolioView projectsByCategory={orderedProjectsByCategory} />;
 }
