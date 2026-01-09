@@ -54,7 +54,6 @@ const Introduction = async () => {
       max-w-7xl w-full
     "
       >
-        {/* Title */}
         <h2
           className={`${allura.className}
         text-4xl sm:text-5xl md:text-6xl lg:text-8xl
@@ -64,14 +63,12 @@ const Introduction = async () => {
           About me
         </h2>
 
-        {/* Content */}
         <div
           className="flex flex-col lg:flex-row
         gap-8 lg:gap-12
         p-4
       "
         >
-          {/* Profile Image */}
           <div
             className="
           relative
@@ -101,9 +98,7 @@ const Introduction = async () => {
             </div>
           </div>
 
-          {/* Text Content */}
           <div className="flex-1 flex flex-col gap-10 max-w-3xl mx-auto lg:mx-0">
-            {/* Bio */}
             <p
               className="
             text-white/80
@@ -114,9 +109,7 @@ const Introduction = async () => {
               {profileData?.bio}
             </p>
 
-            {/* Education + Experience */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Education */}
               <div>
                 <h3 className="text-2xl sm:text-3xl font-black text-white mb-4">
                   EDUCATION
@@ -161,7 +154,7 @@ const Introduction = async () => {
               <h3 className="text-2xl sm:text-3xl font-black text-white mb-4">
                 TECHNICAL SKILLS
               </h3>
-              <div className="flex flex-wrap max-w-xl gap-4">
+              <div className="flex flex-wrap max-w-lg gap-4 border-2">
                 {[
                   "Pr",
                   "Ps",
