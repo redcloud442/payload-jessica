@@ -60,9 +60,8 @@ export default function PortfolioView({ projectsByCategory }: any) {
                         {isVideo ? (
                           <video
                             src={`${process.env.NODE_ENV === "development" ? media.url : process.env.NEXT_PUBLIC_MEDIA_URL + media.url}`}
-                            controls={false}
                             playsInline
-                            preload="auto"
+                            preload="metadata"
                             className="w-full max-h-[80vh] rounded-xl object-contain bg-black"
                           />
                         ) : (
