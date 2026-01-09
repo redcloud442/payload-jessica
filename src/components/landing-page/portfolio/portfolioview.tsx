@@ -29,11 +29,11 @@ export default function PortfolioView({ projectsByCategory }: any) {
 
           {Object.entries(projectsByCategory).map(([slug, category]: any) => (
             <section key={slug}>
-              <div className="flex items-baseline gap-4 mb-10">
-                <h2 className="text-5xl md:text-7xl font-black text-center">
+              <div className="flex flex-col items-center mb-10 w-full">
+                <h2 className="text-5xl md:text-7xl font-black text-center uppercase tracking-tighter">
                   {category.title}
                 </h2>
-                <div className="h-[2px] flex-1 bg-gradient-to-r from-amber-500/50 to-transparent mx-auto" />
+                <div className="h-[2px] w-40 bg-gradient-to-r from-transparent via-amber-500/50 to-transparent mt-4" />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
