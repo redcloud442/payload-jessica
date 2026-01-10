@@ -7,10 +7,11 @@ const nextConfig = {
   images: {
     domains: ["picsum.photos", "placehold.co"],
   },
-  bodyParser: {
-    sizeLimit: "2mb", // Set desired value here
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "10mb",
+    },
   },
-
   webpack: (webpackConfig) => {
     webpackConfig.resolve.extensionAlias = {
       ".cjs": [".cts", ".cjs"],

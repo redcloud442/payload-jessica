@@ -42,25 +42,16 @@ const Introduction = async () => {
       <div className="absolute inset-0 pointer-events-none bg-[url('/bg-intro.png')] bg-cover bg-center" />
       <div className="absolute inset-0 bg-black/50 backdrop-brightness-75" />
 
-      <div
-        className="relative z-10 mx-4 my-10 bg-black/40 backdrop-blur-xs border border-white/10 rounded-[3rem] lg:rounded-[10rem] p-4 sm:p-6 md:p-8 lg:p-5 shadow-2xl max-w-7xl w-full
-    "
-      >
+      <div className="relative z-10 mx-4 my-10 bg-black/40 backdrop-blur-xs border border-white/10 rounded-[3rem] lg:rounded-[10rem] p-4 sm:p-6 md:p-8 lg:p-5 shadow-2xl max-w-7xl w-full">
         <h2
-          className={`${allura.className}
-        text-4xl sm:text-5xl md:text-6xl lg:text-8xl
-        text-[#ffbd59] drop-shadow-lg
-      `}
+          className={`${allura.className} text-4xl sm:text-5xl md:text-6xl lg:text-8xl text-[#ffbd59] drop-shadow-lg`}
         >
           About me
         </h2>
 
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 p-4">
+        <div className="flex flex-col lg:flex-row justify-center  gap-8 lg:gap-12 p-4">
           <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:w-[500px] shrink-0 mx-auto lg:mx-0 flex justify-center lg:justify-start">
-            <div
-              className="relative aspect-[3/5] border-2 rounded-[3rem] lg:rounded-[6rem] overflow-hidden border-2 border-[#ffbd59]
-          "
-            >
+            <div className="relative aspect-[3/5] border-2 rounded-[3rem] lg:rounded-[6rem] overflow-hidden border-[#ffbd59]">
               <Image
                 src={profilePicture.url ?? ""}
                 width={1080}
@@ -71,7 +62,7 @@ const Introduction = async () => {
             </div>
           </div>
 
-          <div className="flex-1 flex flex-col gap-4 max-w-3xl mx-auto lg:mx-0">
+          <div className="flex-1 flex flex-col justify-evenly max-w-3xl mx-auto lg:mx-0">
             <p className="text-white/80 text-base sm:text-lg md:text-xl leading-relaxed font-light">
               {profileData?.bio}
             </p>
