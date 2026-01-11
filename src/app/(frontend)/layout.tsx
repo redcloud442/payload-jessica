@@ -10,14 +10,14 @@ type LayoutProps = {
 
 export const metadata = {
   title: {
-    default: "Jesica Lleona | Video Editor",
-    template: "%s | Jesica Lleona",
+    default: "Jessica Lleona | Video Editor",
+    template: "%s | Jessica Lleona",
   },
   description:
-    "Jesica Lleona is a professional video editor specializing in cinematic edits, short-form content, and brand storytelling. Let's bring your vision to life.",
+    "Jessica Lleona is a professional video editor specializing in cinematic edits, short-form content, and brand storytelling. Let's bring your vision to life.",
 
   keywords: [
-    "Jesica Lleona",
+    "Jessica Lleona",
     "Video Editor",
     "Cinematic Video Editing",
     "Short Form Video Editor",
@@ -27,28 +27,28 @@ export const metadata = {
     "Freelance Video Editor",
   ],
 
-  authors: [{ name: "Jesica Lleona" }],
-  creator: "Jesica Lleona",
-  publisher: "Jesica Lleona",
+  authors: [{ name: "Jessica Lleona" }],
+  creator: "Jessica Lleona",
+  publisher: "Jessica Lleona",
 
-  metadataBase: new URL("https://jesicalleonablog.com"),
+  metadataBase: new URL("https://jessicalleonablog.com"),
 
   alternates: {
     canonical: "/",
   },
 
   openGraph: {
-    title: "Jesica Lleona | Video Editor",
+    title: "Jessica Lleona | Video Editor",
     description:
       "Professional video editor creating cinematic visuals, engaging short-form content, and impactful brand stories.",
-    url: "https://jesicalleonablog.com",
+    url: "https://jessicalleonablog.com",
     siteName: "Jesica Lleona",
     images: [
       {
-        url: "/og-image.jpg", // 🔥 Add this image to /public
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Jesica Lleona – Video Editor",
+        alt: "Jessica Lleona – Video Editor",
       },
     ],
     locale: "en_US",
@@ -57,7 +57,7 @@ export const metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Jesica Lleona | Video Editor",
+    title: "Jessica Lleona | Video Editor",
     description:
       "Cinematic video editor crafting engaging visuals for brands, creators, and storytellers.",
     creator: "@jesica_lleona",
