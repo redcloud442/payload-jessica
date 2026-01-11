@@ -5,7 +5,7 @@ const nextConfig = {
   // Your Next.js config here
 
   images: {
-    domains: ["picsum.photos", "placehold.co"],
+    domains: ["picsum.photos", "placehold.co", "media.jessicalleonablog.com"],
   },
   experimental: {
     serverActions: {
