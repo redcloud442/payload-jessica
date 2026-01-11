@@ -80,12 +80,7 @@ export default function PortfolioView({ projectsByCategory }: any) {
                             />
                           ) : (
                             <Image
-                              src={
-                                process.env.NODE_ENV === "development"
-                                  ? media.url
-                                  : process.env.NEXT_PUBLIC_MEDIA_URL +
-                                    media.url
-                              }
+                              src={media.url}
                               alt={media.alt || ""}
                               width={1000}
                               height={1000}

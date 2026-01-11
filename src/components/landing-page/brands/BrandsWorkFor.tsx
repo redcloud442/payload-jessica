@@ -30,18 +30,13 @@ const BrandsWorkFor = async () => {
               return images.map((image: any, index: number) => {
                 if (!image?.url) return null;
 
-                const src =
-                  process.env.NODE_ENV === "development"
-                    ? image.url
-                    : `${process.env.NEXT_PUBLIC_MEDIA_URL}${image.url}`;
-
                 return (
                   <div
                     key={`${brand.id}-${index}`}
                     className="inline-block w-40 h-40 md:w-50 md:h-50 shrink-0 flex items-center justify-center"
                   >
                     <Image
-                      src={src}
+                      src={image.url}
                       width={500}
                       height={500}
                       alt={image.alt || "Brand logo"}
