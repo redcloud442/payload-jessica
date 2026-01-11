@@ -11,7 +11,7 @@ export const createGetInTouch = async (formData: ContactFormValues) => {
   try {
     const result = await resend.emails.send({
       from: "Contact Form <info@jesicalleonablog.com>",
-      to: ["markivor.glorioso@gmail.com"],
+      to: ["jesica.lleona21@gmail.com"],
       subject: "New Contact Form Submission",
       replyTo: email,
       html: await render(

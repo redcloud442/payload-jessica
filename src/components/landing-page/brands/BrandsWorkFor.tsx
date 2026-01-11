@@ -40,7 +40,7 @@ const BrandsWorkFor = async () => {
                       width={500}
                       height={500}
                       alt={image.alt || "Brand logo"}
-                      className="w-full h-full rounded-full object-contain transition-transform hover:scale-110 duration-300"
+                      className="w-full h-full object-contain transition-transform hover:scale-110 duration-300"
                     />
                   </div>
                 );
@@ -50,7 +50,7 @@ const BrandsWorkFor = async () => {
         </div>
       </div>
 
-      <h3 className="text-white text-2xl md:text-4xl font-black tracking-tight mt-8 uppercase italic">
+      <h3 className="text-white text-3xl sm:text-5xl md:text-7xl font-black tracking-tight mt-8 uppercase italic">
         AND MORE!
       </h3>
     </section>
