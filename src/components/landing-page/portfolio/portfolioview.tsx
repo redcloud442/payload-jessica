@@ -31,7 +31,6 @@ export default function PortfolioView({ projectsByCategory }: any) {
               key={slug}
               className="border-10 border-amber-500 rounded-2xl p-4 bg-white/90"
             >
-              {/* CATEGORY HEADER */}
               <div className="flex flex-col items-center mb-10 w-full">
                 <h2 className="text-5xl md:text-7xl font-black text-amber-500 text-center uppercase tracking-tighter">
                   {category.title}
