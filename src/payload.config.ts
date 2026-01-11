@@ -12,6 +12,7 @@ import { Profile } from "./collections/Profile";
 import { Experience } from "./collections/Experience";
 import { Education } from "./collections/Education";
 import { ProjectCategory } from "./collections/ProjectCategory";
+import { WorkBrands } from "./collections/WorkBrands";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -31,6 +32,7 @@ export default buildConfig({
     Profile,
     Experience,
     Education,
+    WorkBrands,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",

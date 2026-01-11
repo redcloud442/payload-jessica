@@ -74,6 +74,7 @@ export interface Config {
     profile: Profile;
     experience: Experience;
     education: Education;
+    workBrands: WorkBrand;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -88,6 +89,7 @@ export interface Config {
     profile: ProfileSelect<false> | ProfileSelect<true>;
     experience: ExperienceSelect<false> | ExperienceSelect<true>;
     education: EducationSelect<false> | EducationSelect<true>;
+    workBrands: WorkBrandsSelect<false> | WorkBrandsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -256,6 +258,16 @@ export interface Education {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "workBrands".
+ */
+export interface WorkBrand {
+  id: number;
+  image: (number | Media)[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -305,6 +317,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'education';
         value: number | Education;
+      } | null)
+    | ({
+        relationTo: 'workBrands';
+        value: number | WorkBrand;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -450,6 +466,15 @@ export interface EducationSelect<T extends boolean = true> {
   startYear?: T;
   isCurrent?: T;
   endYear?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "workBrands_select".
+ */
+export interface WorkBrandsSelect<T extends boolean = true> {
+  image?: T;
   updatedAt?: T;
   createdAt?: T;
 }

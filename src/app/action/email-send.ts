@@ -9,7 +9,6 @@ export const createGetInTouch = async (formData: ContactFormValues) => {
   const { name, email, message } = formData;
 
   try {
-    console.log("Sending email");
     const result = await resend.emails.send({
       from: "Contact Form <info@jesicalleonablog.com>",
       to: ["markivor.glorioso@gmail.com"],

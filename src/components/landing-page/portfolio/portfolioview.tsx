@@ -20,15 +20,12 @@ export default function PortfolioView({ projectsByCategory }: any) {
 
   return (
     <>
-      {/* PAGE WRAPPER */}
       <div className="bg-[#0a0a0a] min-h-screen text-white sm:p-10 p-5">
         <div className="max-w-7xl mx-auto space-y-32">
-          {/* TITLE */}
           <h1 className="text-3xl sm:text-5xl md:text-7xl font-black text-center text-amber-500">
             PROJECTS I&apos;VE WORKED ON
           </h1>
 
-          {/* CATEGORIES */}
           {Object.entries(projectsByCategory).map(([slug, category]: any) => (
             <section
               key={slug}
@@ -83,7 +80,12 @@ export default function PortfolioView({ projectsByCategory }: any) {
                             />
                           ) : (
                             <Image
-                              src={media.url}
+                              src={
+                                process.env.NODE_ENV === "development"
+                                  ? media.url
+                                  : process.env.NEXT_PUBLIC_MEDIA_URL +
+                                    media.url
+                              }
                               alt={media.alt || ""}
                               width={1000}
                               height={1000}

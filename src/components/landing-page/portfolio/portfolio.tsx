@@ -31,7 +31,6 @@ export default async function Portfolio() {
     {} as Record<string, { title: string; projects: Project[] }>
   );
 
-  console.log(projectsByCategory);
   const orderedProjectsByCategory = ORDER.map((slug) => {
     const category = projectsByCategory[slug];
     if (!category) return null;
