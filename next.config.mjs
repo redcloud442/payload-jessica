@@ -9,9 +9,10 @@ const nextConfig = {
   },
   experimental: {
     serverActions: {
-      bodySizeLimit: "10mb",
+      bodySizeLimit: "50mb",
     },
   },
+  serverExternalPackages: ["ffmpeg-static"],
   webpack: (webpackConfig) => {
     webpackConfig.resolve.extensionAlias = {
       ".cjs": [".cts", ".cjs"],

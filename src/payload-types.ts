@@ -159,6 +159,7 @@ export interface User {
 export interface Media {
   id: number;
   alt: string;
+  isThumbnail?: boolean | null;
   thumbnail?: (number | null) | Media;
   prefix?: string | null;
   updatedAt: string;
@@ -392,6 +393,7 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  isThumbnail?: T;
   thumbnail?: T;
   prefix?: T;
   updatedAt?: T;
