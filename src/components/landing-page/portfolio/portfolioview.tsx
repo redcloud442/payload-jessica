@@ -49,7 +49,6 @@ export default function PortfolioView({ projectsByCategory }: any) {
                     project.projectMedia?.map((media: any, i: number) => {
                       const isVideo = media.mimeType?.startsWith("video");
 
-                      console.log(media);
                       return (
                         <div
                           key={`${project.id}-${i}`}
