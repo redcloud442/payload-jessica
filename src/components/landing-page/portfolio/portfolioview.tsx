@@ -78,7 +78,7 @@ export default function PortfolioView({ projectsByCategory }: any) {
                               muted
                               playsInline
                               onLoadedData={(e) => e.currentTarget.pause()}
-                              preload="metadata"
+                              preload="auto"
                               className="w-full  max-h-[40vh] rounded-2xl object-cover "
                             />
                           ) : (
