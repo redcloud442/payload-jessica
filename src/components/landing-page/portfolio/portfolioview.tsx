@@ -74,7 +74,10 @@ export default function PortfolioView({ projectsByCategory }: any) {
                                   : process.env.NEXT_PUBLIC_MEDIA_URL +
                                     media.url
                               }
+                              autoPlay
+                              muted
                               playsInline
+                              onLoadedData={(e) => e.currentTarget.pause()}
                               preload="metadata"
                               className="w-full  max-h-[40vh] rounded-2xl object-cover "
                             />
