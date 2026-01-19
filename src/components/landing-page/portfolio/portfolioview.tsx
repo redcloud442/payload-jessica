@@ -67,12 +67,7 @@ export default function PortfolioView({ projectsByCategory }: any) {
                         >
                           {isVideo ? (
                             <video
-                              src={
-                                process.env.NODE_ENV === "development"
-                                  ? media.url
-                                  : process.env.NEXT_PUBLIC_MEDIA_URL +
-                                    media.url
-                              }
+                              src={media.url}
                               autoPlay
                               muted
                               playsInline
