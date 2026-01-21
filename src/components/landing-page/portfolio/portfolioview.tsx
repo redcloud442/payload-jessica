@@ -42,13 +42,24 @@ export default function PortfolioView({ projectsByCategory }: any) {
               <div className="relative rounded-2xl overflow-hidden">
                 {/* DARK → WHITE BLEND */}
                 <div className="absolute inset-0 from-[#0a0a0a] via-white/80 to-white" />
-
                 {/* GRID CONTENT */}
                 <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-10 rounded-2xl">
                   {category.projects.map((project: any) =>
                     project.projectMedia?.map((media: any, i: number) => {
                       const isVideo = media.mimeType?.startsWith("video");
-
+                      const videoSrc =
+                      process.env.NODE_ENV === "development"
+                        ? media.url
+                        : process.env.NEXT_PUBLIC_MEDIA_URL + media.url;
+                    
+              
+                    const posterSrc =
+                      media?.thumbnail?.url
+                        ? process.env.NODE_ENV === "development"
+                          ? media.thumbnail?.url
+                          : process.env.NEXT_PUBLIC_MEDIA_URL + media.thumbnail?.url
+                        : undefined;
+                 
                       return (
                         <div
                           key={`${project.id}-${i}`}
@@ -66,20 +77,12 @@ export default function PortfolioView({ projectsByCategory }: any) {
                           className="relative rounded-[1rem] overflow-hidden shadow-4xl cursor-pointer border-2 border-amber-500"
                         >
                           {isVideo ? (
-                            <video
-                              src={
-                                process.env.NODE_ENV === "development"
-                                  ? media.url
-                                  : process.env.NEXT_PUBLIC_MEDIA_URL +
-                                    media.url
-                              }
-                              autoPlay
-                              muted
-                              playsInline
-                              onLoadedData={(e) => e.currentTarget.pause()}
-                              preload="auto"
-                              className="w-full  max-h-[40vh] rounded-2xl object-cover "
-                            />
+                          <video
+                          src={videoSrc}
+                          poster={posterSrc}
+                          preload="metadata"
+                          className="w-full max-h-[40vh] rounded-2xl object-cover"
+                        />
                           ) : (
                             <Image
                               src={media.url}

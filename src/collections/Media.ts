@@ -1,7 +1,6 @@
 import { CollectionConfig } from "payload";
-import { v4 as uuidv4 } from "uuid";
-import fs, { mkdirSync } from "fs";
-import { extractFirstFrame } from "@/lib/server-utils";
+import fs from "fs";
+import { videoCoverImage } from "@/lib/server-utils";
 
 export const Media: CollectionConfig = {
   slug: "media",
@@ -19,21 +18,12 @@ export const Media: CollectionConfig = {
         if (operation !== "create") return doc;
         if (!req.file) return doc;
         if (!req.file.mimetype?.startsWith("video")) return doc;
-        if (doc.isThumbnail) return doc;
-
-        const TMP_PATH = "media/tmp";
-        mkdirSync(TMP_PATH, { recursive: true });
-
-        const tempFilePath = req.file.tempFilePath;
-        if (!tempFilePath) return doc;
-
-        const outputPath = `${TMP_PATH}/${uuidv4()}.webp`;
-
+        if (doc.isThumbnail || doc.thumbnail) return doc;
+    
         try {
-          await extractFirstFrame(tempFilePath, outputPath);
-
+          const outputPath = await videoCoverImage(req.file.data);
           const fileData = fs.readFileSync(outputPath);
-
+    
           const thumbnailDoc = await req.payload.create({
             collection: "media",
             req,
@@ -48,25 +38,26 @@ export const Media: CollectionConfig = {
               size: fileData.length,
             },
           });
-
+    
           await req.payload.update({
             collection: "media",
             id: doc.id,
             req,
             data: {
               thumbnail: thumbnailDoc.id,
+              thumbnailURL: thumbnailDoc.url,
             },
           });
-        } catch (error) {
-          console.error("Thumbnail generation failed:", error);
-        } finally {
-          if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
+        } catch (err) {
+          console.error("Thumbnail generation failed:", err);
         }
-
+    
         return doc;
       },
     ],
+    
   },
+  
 
   fields: [
     {
@@ -82,13 +73,15 @@ export const Media: CollectionConfig = {
     },
     {
       name: "thumbnail",
-      type: "upload",
+      type: "relationship",
       relationTo: "media",
       admin: {
-        condition: (_, siblingData: any) =>
-          siblingData?.mimeType?.startsWith("video") &&
-          !siblingData?.isThumbnail,
+        condition: ({ data }) =>
+          data?.mimeType?.startsWith("video") &&
+          !data?.isThumbnail,
       },
-    },
+    }
+    
+    
   ],
 };

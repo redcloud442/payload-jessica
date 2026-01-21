@@ -1,6 +1,7 @@
 import { withPayload } from "@payloadcms/next/withPayload";
 
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   // Your Next.js config here
 
@@ -11,9 +12,17 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: "50mb",
     },
+    serverComponentsExternalPackages: [
+      'fluent-ffmpeg',
+      '@ffmpeg-installer/ffmpeg',
+    ],
   },
-  serverExternalPackages: ["ffmpeg-static"],
   webpack: (webpackConfig) => {
+    webpackConfig.ignoreWarnings = [
+      w =>
+        typeof w.message === 'string' &&
+        w.message.includes('Critical dependency')
+    ]
     webpackConfig.resolve.extensionAlias = {
       ".cjs": [".cts", ".cjs"],
       ".js": [".ts", ".tsx", ".js", ".jsx"],
