@@ -16,7 +16,7 @@ export const videoCoverImage = async (data: Buffer): Promise<string> => {
 
   await new Promise<void>((resolve, reject) => {
     ffmpeg(videoTempPath)
-      .videoFilters("select=eq(n\\,0.5)")
+      .videoFilters("select=eq(n\\,1.5)")
       .output(outputPath)
       .on("end", () => resolve())
       .on("error", (error) => reject(error))

@@ -1,6 +1,6 @@
 import { CollectionConfig } from "payload";
-import { v4 as uuidv4 } from "uuid";
-import fs, { mkdirSync } from "fs";
+
+import fs from "fs";
 import { videoCoverImage } from "@/lib/server-utils";
 
 export const Media: CollectionConfig = {
@@ -20,11 +20,11 @@ export const Media: CollectionConfig = {
         if (!req.file) return doc;
         if (!req.file.mimetype?.startsWith("video")) return doc;
         if (doc.isThumbnail || doc.thumbnail) return doc;
-    
+
         try {
           const outputPath = await videoCoverImage(req.file.data);
           const fileData = fs.readFileSync(outputPath);
-    
+
           const thumbnailDoc = await req.payload.create({
             collection: "media",
             req,
@@ -39,7 +39,7 @@ export const Media: CollectionConfig = {
               size: fileData.length,
             },
           });
-    
+
           await req.payload.update({
             collection: "media",
             id: doc.id,
@@ -51,13 +51,11 @@ export const Media: CollectionConfig = {
         } catch (err) {
           console.error("Thumbnail generation failed:", err);
         }
-    
+
         return doc;
       },
     ],
-    
   },
-  
 
   fields: [
     {
@@ -77,11 +75,8 @@ export const Media: CollectionConfig = {
       relationTo: "media",
       admin: {
         condition: ({ data }) =>
-          data?.mimeType?.startsWith("video") &&
-          !data?.isThumbnail,
+          data?.mimeType?.startsWith("video") && !data?.isThumbnail,
       },
-    }
-    
-    
+    },
   ],
 };
