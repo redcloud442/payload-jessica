@@ -11,6 +11,7 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: "50mb",
     },
+    serverExternalPackages: ["ffmpeg-static"],
   },
   serverExternalPackages: ["ffmpeg-static"],
   webpack: (webpackConfig) => {

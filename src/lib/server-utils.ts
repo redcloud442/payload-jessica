@@ -1,30 +1,27 @@
 import ffmpeg from "fluent-ffmpeg";
 import ffmpegStatic from "ffmpeg-static";
+import fs, { mkdirSync } from "fs";
+import { v4 as uuidv4 } from "uuid";
 
-// Set FFmpeg path for local development
-if (ffmpegStatic) {
-  ffmpeg.setFfmpegPath(ffmpegStatic);
-}
+ffmpeg.setFfmpegPath(ffmpegStatic!);
 
-export async function extractFirstFrame(
-  inputPath: string,
-  outputPath: string
-): Promise<void> {
-  return new Promise<void>((resolve, reject) => {
-    ffmpeg()
-      .input(inputPath)
-      .videoFilters("select=eq(n\\,0)") // Select first frame
-      .frames(1) // Only extract 1 frame
+export const videoCoverImage = async (data: Buffer): Promise<string> => {
+  const TMP_PATH = "media/tmp";
+  mkdirSync(TMP_PATH, { recursive: true });
+
+  const videoTempPath = `${TMP_PATH}/${uuidv4()}.mp4`;
+  const outputPath = `${TMP_PATH}/${uuidv4()}.webp`;
+
+  fs.writeFileSync(videoTempPath, data);
+
+  await new Promise<void>((resolve, reject) => {
+    ffmpeg(videoTempPath)
+      .videoFilters("select=eq(n\\,0.5)")
       .output(outputPath)
-      .outputOptions(["-q:v", "2"]) // High quality
-      .on("end", () => {
-        console.log("Thumbnail generated successfully");
-        resolve();
-      })
-      .on("error", (err) => {
-        console.error("FFmpeg Error:", err);
-        reject(err);
-      })
+      .on("end", () => resolve())
+      .on("error", (error) => reject(error))
       .run();
   });
-}
+
+  return outputPath;
+};
